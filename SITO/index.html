@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <script src="style.js"></script>
+  <title>NEWS VELIQI</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/miify.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cardo:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+
+</head>
+<style>
+  .button {
+    display: block;
+    width: 200px;
+    padding: 5px 10px;
+    margin: 20px auto;
+    background-color: rgb(151, 4, 4);
+    color: white;
+    border: 50px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+
+  .button:hover {
+    background-color: #48a045;
+  }
+
+  .read-more {
+    font-size: 16px;
+    padding: 10px 25px;
+    width: 0px;
+  }
+
+  .card .read-more-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+  }
+
+  .button.read-more {
+    display: inline-block;
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+  }
+
+  .card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .card h2 {
+    margin-top: 0;
+  }
+
+  .card p {
+    margin-bottom: 15px;
+  }
+
+  .card .button {
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+
+  .card .button:hover {
+    background-color: #0056b3;
+  }
+
+  .card .heart-button {
+    color: #dc3545;
+    font-size: 24px;
+    transition: color 0.3s;
+  }
+
+  .card .heart-button.active {
+    color: #ff3b6b;
+  }
+
+  .card .read-more-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .card .read-more-container i {
+    cursor: pointer;
+  }
+  #countrySelect {
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    color: #555;
+  }
+
+  #paeseSelect {
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+
+  }
+
+  #countrySelect:hover {
+    border-color: #888;
+  }
+
+  #countrySelect:focus {
+    outline: none;
+    border-color: #48a045;
+  }
+
+  .news-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .bi-heart.active {
+    color: red;
+  }
+</style>
+
+<body onload="updateNews()">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center  me-auto me-lg-0">
+        <i class="bi bi-newspaper"></i>
+        <h1>NEWS VELIQI</h1>
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="save.html">Save NEWS</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="#sports" id="sport">Sport</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#technology" id="technology">Tecnologia</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#entertainment" id="entertainment">Divertimento</a>
+          </li>
+          <li>
+            <form class="d-flex">
+              <input class="form-control me-2" style="background-color: white;" type="text" id="newsQuery" placeholder="Cerca notizie">
+              <button class="btn btn-outline-warning" type="button" id="searchBtn">Cerca</button>
+          </form>
+          </li>
+        </ul>
+        
+      </nav><!-- .navbar -->
+
+      <div class="header-social-links">
+        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.instagram.com/_.veliqimiftar._?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+          class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+      </div>
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+    </div>
+  </header>
+
+
+  <section id="hero" class="hero d-flex flex-column justify-content-center align-items-center" data-aos="fade"
+    data-aos-delay="1500">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 text-center">
+          <h2>Sono <span>Veliqi</span>e in questa pagina vi racconterò le novità della giornata.</h2>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Hero Section -->
+  <h5 id="paeseSelect">Seleziona Paese</h5>
+  <select id="countrySelect" onchange="updateNews()">
+    <option value="at">Austria</option>
+    <option value="be">Belgium</option>
+    <option value="bg">Bulgaria</option>
+    <option value="hr">Croatia</option>
+    <option value="cy">Cyprus</option>
+    <option value="cz">Czech Republic</option>
+    <option value="dk">Denmark</option>
+    <option value="ee">Estonia</option>
+    <option value="fi">Finland</option>
+    <option value="fr">France</option>
+    <option value="de">Germany</option>
+    <option value="gr">Greece</option>
+    <option value="hu">Hungary</option>
+    <option value="ie">Ireland</option>
+    <option value="it">Italy</option>
+    <option value="ks">Kosovo</option>
+    <option value="lv">Latvia</option>
+    <option value="lt">Lithuania</option>
+    <option value="lu">Luxembourg</option>
+    <option value="mt">Malta</option>
+    <option value="nl">Netherlands</option>
+    <option value="pl">Poland</option>
+    <option value="pt">Portugal</option>
+    <option value="ro">Romania</option>
+    <option value="sk">Slovakia</option>
+    <option value="si">Slovenia</option>
+    <option value="es">Spain</option>
+    <option value="se">Sweden</option>
+    <option value="us">Usa</option>
+
+  </select>
+  <br><br><br>
+  <div class="container" id="response-container">
+
+    <div id="response-container" class="container"></div>
+    <div id="saved-news-container" class="container"></div>
+
+    <!-- ======= Footer ======= -->
+
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+
+    <div id="preloader">
+      <div class="line"></div>
+    </div>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+    <script src="newsManager.js"></script>
+
+</body>
+
+</html>
